@@ -1,15 +1,23 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Films</router-link> |
-      <router-link to="/planets">Planets</router-link>
-      <router-link to="/starships">Starships</router-link>
-      <router-link to="/vehicles">Vehicles</router-link>
-      <router-link to="/people">People</router-link>
-      <router-link to="/species">Species</router-link>
-    </nav>
-    <router-view />
+    <header>
+      <nav-bar />
+    </header>
+    <main class="mt-12 lg:mt-32">
+      <section class="container mx-auto px-6">
+        <router-view />
+      </section>
+    </main>
   </div>
 </template>
 
-<style lang="scss"></style>
+<script>
+import NavBar from "@/components/layout/NavBar";
+
+export default {
+  name: "HomeView",
+  components: {
+    NavBar,
+  },
+};
+</script>

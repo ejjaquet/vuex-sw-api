@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <FilmItems></FilmItems>
+    <film-items></film-items>
   </div>
 </template>
 

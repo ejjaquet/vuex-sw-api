@@ -1,6 +1,6 @@
 <template>
   <div class="planets">
-    <PlanetItems></PlanetItems>
+    <planet-items></planet-items>
   </div>
 </template>
 

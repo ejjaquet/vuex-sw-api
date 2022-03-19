@@ -1,6 +1,6 @@
 <template>
   <div class="vehicles">
-    <VehicleItems></VehicleItems>
+    <vehicle-items></vehicle-items>
   </div>
 </template>
 

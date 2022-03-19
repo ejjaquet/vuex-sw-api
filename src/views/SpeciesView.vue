@@ -1,6 +1,6 @@
 <template>
   <div class="species">
-    <SpeciesItems></SpeciesItems>
+    <species-items></species-items>
   </div>
 </template>
 

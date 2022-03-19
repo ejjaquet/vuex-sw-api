@@ -1,14 +1,14 @@
 <template>
   <div class="starships">
-    <StarshipItems></StarshipItems>
+    <starship-items></starship-items>
   </div>
 </template>
 
 <script>
-import StarshipItems from "@/components/StarshipItems.vue";
+import StarshipItems from "@/components/StarshipItems";
 
 export default {
-  name: "PlanetView",
+  name: "StarhipView",
   components: {
     StarshipItems,
   },

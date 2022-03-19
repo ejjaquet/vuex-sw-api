@@ -6,6 +6,7 @@ import PlanetsModule from "./modules/PlanetsModule";
 import StarshipsModule from "./modules/StarshipsModule";
 import VehiclesModule from "./modules/VehiclesModule";
 import PeopleModule from "./modules/PeopleModule";
+import SpeciesModule from "./modules/SpeciesModule";
 
 Vue.use(Vuex);
 
@@ -20,5 +21,6 @@ export default new Vuex.Store({
     StarshipsModule,
     VehiclesModule,
     PeopleModule,
+    SpeciesModule,
   },
 });

@@ -1,5 +1,16 @@
 <template>
   <div class="vehicles">
-    <h1>Vehicles from Star Wars</h1>
+    <VehicleItems></VehicleItems>
   </div>
 </template>
+
+<script>
+import VehicleItems from "@/components/VehicleItems.vue";
+
+export default {
+  name: "VehicleView",
+  components: {
+    VehicleItems,
+  },
+};
+</script>

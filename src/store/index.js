@@ -5,6 +5,7 @@ import FilmsModule from "./modules/FilmsModule";
 import PlanetsModule from "./modules/PlanetsModule";
 import StarshipsModule from "./modules/StarshipsModule";
 import VehiclesModule from "./modules/VehiclesModule";
+import PeopleModule from "./modules/PeopleModule";
 
 Vue.use(Vuex);
 
@@ -18,5 +19,6 @@ export default new Vuex.Store({
     PlanetsModule,
     StarshipsModule,
     VehiclesModule,
+    PeopleModule,
   },
 });

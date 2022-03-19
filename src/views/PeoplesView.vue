@@ -1,5 +1,16 @@
 <template>
   <div class="peoples">
-    <h1>Peoples from Star Wars</h1>
+    <PeopleItems></PeopleItems>
   </div>
 </template>
+
+<script>
+import PeopleItems from "@/components/PeopleItems.vue";
+
+export default {
+  name: "PeopleView",
+  components: {
+    PeopleItems,
+  },
+};
+</script>

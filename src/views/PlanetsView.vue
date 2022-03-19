@@ -1,5 +1,16 @@
 <template>
   <div class="planets">
-    <h1>Planets from Star Wars</h1>
+    <PlanetItems></PlanetItems>
   </div>
 </template>
+
+<script>
+import PlanetItems from "@/components/PlanetItems.vue";
+
+export default {
+  name: "PlanetView",
+  components: {
+    PlanetItems,
+  },
+};
+</script>

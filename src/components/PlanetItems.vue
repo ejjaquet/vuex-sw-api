@@ -3,11 +3,11 @@
     <ul class="list-group mt-5">
       <li
         class="list-group-item list-group-item-action"
-        v-for="film in filmList"
-        :key="film.episode_id"
+        v-for="planet in planetList"
+        :key="planet.id"
       >
         <div class="d-flex w-100 justify-content-between">
-          <h3>{{ film.title }}</h3>
+          <h3>{{ planet.name }}</h3>
         </div>
       </li>
     </ul>
@@ -17,13 +17,13 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "FilmItems",
+  name: "PlanetItems",
   methods: {
-    ...mapActions(["fetchFilms"]),
+    ...mapActions(["fetchPlanets"]),
   },
-  computed: mapGetters(["filmList"]),
+  computed: mapGetters(["planetList"]),
   created() {
-    this.fetchFilms();
+    this.fetchPlanets();
   },
 };
 </script>

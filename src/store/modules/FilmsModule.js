@@ -5,9 +5,10 @@ const state = {
 const getters = {
   filmList: (state) => state.films,
 };
+const apiUrl = `${process.env.VUE_APP_API_URL}/films/`;
 const actions = {
   async fetchFilms({ commit }) {
-    const response = await axios.get("https://swapi.dev/api/films/");
+    const response = await axios.get(apiUrl);
     commit("setFilms", response.data.results);
   },
 };

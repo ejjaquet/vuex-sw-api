@@ -11,34 +11,40 @@ const routes = [
     component: FilmsView,
   },
   {
+    path: "/films/:id",
+    name: "filmdetail",
+    component: () =>
+      import(/* webpackChunkName: "planets" */ "../views/FilmsDetailView.vue"),
+  },
+  {
     path: "/planets",
     name: "planets",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/PlanetsView.vue"),
+      import(/* webpackChunkName: "planets" */ "../views/PlanetsView.vue"),
   },
   {
     path: "/starships",
     name: "starships",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/StarshipsView.vue"),
+      import(/* webpackChunkName: "starships" */ "../views/StarshipsView.vue"),
   },
   {
     path: "/vehicles",
     name: "vehicles",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/VehiclesView.vue"),
+      import(/* webpackChunkName: "vehicles" */ "../views/VehiclesView.vue"),
   },
   {
     path: "/people",
     name: "people",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/PeoplesView.vue"),
+      import(/* webpackChunkName: "peoples" */ "../views/PeoplesView.vue"),
   },
   {
     path: "/species",
     name: "species",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/SpeciesView.vue"),
+      import(/* webpackChunkName: "species" */ "../views/SpeciesView.vue"),
   },
 ];
 

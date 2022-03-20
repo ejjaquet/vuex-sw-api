@@ -20,7 +20,7 @@
               >
             </h1>
             <p class="text-grey-darker text-sm">
-              {{ $date(film.created).format("DD/MM/YYYY") }}
+              {{ $date(film.release_date).format("DD/MM/YYYY") }}
             </p>
           </header>
 

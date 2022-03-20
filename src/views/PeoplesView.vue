@@ -1,5 +1,6 @@
 <template>
   <div class="peoples">
+    <h1 class="text-4xl font-bold">Star Wars Characters - overview</h1>
     <people-items></people-items>
   </div>
 </template>

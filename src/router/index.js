@@ -14,7 +14,7 @@ const routes = [
     path: "/films/:id",
     name: "filmdetail",
     component: () =>
-      import(/* webpackChunkName: "planets" */ "../views/FilmsDetailView.vue"),
+      import(/* webpackChunkName: "film" */ "../views/FilmsDetailView.vue"),
   },
   {
     path: "/planets",
@@ -26,7 +26,7 @@ const routes = [
     path: "/planets/:id",
     name: "planetdetail",
     component: () =>
-      import(/* webpackChunkName: "planets" */ "../views/PlanetDetailView.vue"),
+      import(/* webpackChunkName: "planet" */ "../views/PlanetDetailView.vue"),
   },
   {
     path: "/starships",
@@ -50,13 +50,21 @@ const routes = [
     path: "/people/:id",
     name: "persondetail",
     component: () =>
-      import(/* webpackChunkName: "planets" */ "../views/PersonDetailView.vue"),
+      import(/* webpackChunkName: "person" */ "../views/PersonDetailView.vue"),
   },
   {
     path: "/species",
     name: "species",
     component: () =>
       import(/* webpackChunkName: "species" */ "../views/SpeciesView.vue"),
+  },
+  {
+    path: "/species/:id",
+    name: "speciesdetail",
+    component: () =>
+      import(
+        /* webpackChunkName: "speciesDetail" */ "../views/SpeciesDetailView.vue"
+      ),
   },
 ];
 

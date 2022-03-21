@@ -23,6 +23,12 @@ const routes = [
       import(/* webpackChunkName: "planets" */ "../views/PlanetsView.vue"),
   },
   {
+    path: "/planets/:id",
+    name: "planetdetail",
+    component: () =>
+      import(/* webpackChunkName: "planets" */ "../views/PlanetDetailView.vue"),
+  },
+  {
     path: "/starships",
     name: "starships",
     component: () =>

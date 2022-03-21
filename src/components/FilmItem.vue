@@ -2,7 +2,7 @@
   <div>
     <div class="hero bg-yellow-400 p-10">
       <div class="hero-content text-center">
-        <h1 class="text-5xl font-bold">{{ filmDetail.title }}</h1>
+        <h1 class="text-4xl font-bold">{{ filmDetail.title }}</h1>
         <p class="py-6">
           {{ filmDetail.opening_crawl }}
         </p>

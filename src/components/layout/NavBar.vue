@@ -1,7 +1,7 @@
 <template>
   <nav class="bg-black border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-      <a href="#" class="flex items-center">
+      <a href="/" class="flex items-center">
         <img
           src="../../assets/images/starwars-logo.svg"
           class="mr-3 h-6 sm:h-10"
@@ -19,7 +19,7 @@
           <li>
             <router-link
               class="block py-2 pr-4 pl-3 text-black bg-yellow-400 rounded"
-              to="/"
+              to="/films"
               >Films</router-link
             >
           </li>

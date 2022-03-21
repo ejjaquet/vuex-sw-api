@@ -13,9 +13,11 @@
             class="flex items-center justify-between leading-tight p-2 md:p-4"
           >
             <h1 class="text-lg">
-              <a class="no-underline hover:underline text-black" href="#">
-                {{ person.name }}
-              </a>
+              <router-link
+                class="no-underline hover:underline text-black"
+                :to="{ name: 'persondetail', params: { id: person.personId } }"
+                >{{ person.name }}</router-link
+              >
             </h1>
             <p class="text-grey-darker text-sm">
               {{ $date(person.created).format("DD/MM/YYYY") }}

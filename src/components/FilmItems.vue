@@ -1,5 +1,8 @@
 <template>
-  <div class="container my-12 mx-auto px-4 md:px-12">
+  <div v-if="loadingStatus">
+    <vue-spinner line-fg-color="#facc15" />
+  </div>
+  <div v-else class="container my-12 mx-auto px-4 md:px-12">
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
       <!-- Column -->
       <div
@@ -39,13 +42,17 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Spinner from "vue-simple-spinner";
 export default {
   name: "FilmItems",
+  components: {
+    vueSpinner: Spinner,
+  },
   methods: {
     ...mapActions(["fetchFilms"]),
   },
   computed: {
-    ...mapGetters(["filmList"]),
+    ...mapGetters(["filmList", "loadingStatus"]),
   },
   created() {
     this.fetchFilms();

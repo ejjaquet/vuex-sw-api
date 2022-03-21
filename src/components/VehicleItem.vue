@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="loadingStatus" class="loading-div">
+    <vue-spinner line-fg-color="#facc15" />
+  </div>
+  <div v-else>
     <h1 class="text-4xl font-bold">{{ vehicleDetail.name }}</h1>
     <div class="flex flex-col">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -138,13 +141,17 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Spinner from "vue-simple-spinner";
 export default {
   name: "VehicleItem",
+  components: {
+    vueSpinner: Spinner,
+  },
   methods: {
     ...mapActions(["fetchVehicleDetail"]),
   },
   computed: {
-    ...mapGetters(["vehicleDetail"]),
+    ...mapGetters(["vehicleDetail", "loadingStatus"]),
   },
   created() {
     this.fetchVehicleDetail(this.$route.params.id);

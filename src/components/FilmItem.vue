@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="loadingStatus" class="loading-div">
+    <vue-spinner line-fg-color="#facc15" />
+  </div>
+  <div v-else>
     <div class="hero bg-yellow-400 p-10">
       <div class="hero-content text-center">
         <h1 class="text-4xl font-bold">{{ filmDetail.title }}</h1>
@@ -73,13 +76,17 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Spinner from "vue-simple-spinner";
 export default {
   name: "FilmItem",
+  components: {
+    vueSpinner: Spinner,
+  },
   methods: {
     ...mapActions(["fetchFilmDetail"]),
   },
   computed: {
-    ...mapGetters(["filmDetail"]),
+    ...mapGetters(["filmDetail", "loadingStatus"]),
   },
   created() {
     this.fetchFilmDetail(this.$route.params.id);

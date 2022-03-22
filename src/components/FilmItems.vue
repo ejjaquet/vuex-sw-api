@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loadingStatus">
+  <div v-if="loadingStatusFilms">
     <vue-spinner line-fg-color="#facc15" />
   </div>
   <div v-else class="container my-12 mx-auto px-4 md:px-12">
@@ -52,7 +52,7 @@ export default {
     ...mapActions(["fetchFilms"]),
   },
   computed: {
-    ...mapGetters(["filmList", "loadingStatus"]),
+    ...mapGetters(["filmList", "loadingStatusFilms"]),
   },
   created() {
     this.fetchFilms();

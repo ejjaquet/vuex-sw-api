@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loadingStatus" class="loading-div">
+  <div v-if="loadingStatusStarships" class="loading-div">
     <vue-spinner line-fg-color="#facc15" />
   </div>
   <div v-else class="container my-12 mx-auto px-4 md:px-12">
@@ -54,7 +54,7 @@ export default {
   methods: {
     ...mapActions(["fetchStarships"]),
   },
-  computed: mapGetters(["starshipList", "loadingStatus"]),
+  computed: mapGetters(["starshipList", "loadingStatusStarships"]),
   created() {
     this.fetchStarships();
   },

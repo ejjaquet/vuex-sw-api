@@ -1,38 +1,48 @@
 import axios from "axios";
+const getNumberOfPages = (count) => Math.ceil(count / 10);
 const state = {
   people: [],
   person: {},
-  loadingStatus: false,
+  loadingStatusPeople: false,
+  peoplePage: 1,
+  peopleNrOfPages: 1,
 };
 const getters = {
   peopleList: (state) => state.people,
   personDetail: (state) => state.person,
-  loadingStatus: (state) => state.loadingStatus,
+  loadingStatusPeople: (state) => state.loadingStatusPeople,
+  peoplePage: (state) => state.peoplePage,
+  peopleNrOfPages: (state) => state.peopleNrOfPages,
 };
 const apiUrl = `${process.env.VUE_APP_API_URL}/people/`;
 const actions = {
-  async fetchPeople({ commit }) {
-    commit("loadingStatus", true);
-    const response = await axios.get(apiUrl);
+  async fetchPeople({ commit }, page) {
+    console.log("Page: " + page);
+    commit("loadingStatusPeople", true);
+    const response = await axios.get(`${apiUrl}?page=${page}`);
     const returnList = response.data.results.map((el) => {
       el.personId = el.url.split("/")[5];
       return el;
     });
-    commit("loadingStatus", false);
+    commit("loadingStatusPeople", false);
+    commit("setNrOfPages", getNumberOfPages(response.data.count));
     commit("setPeople", returnList);
   },
   async fetchPerson({ commit }, payload) {
-    commit("loadingStatus", true);
+    commit("loadingStatusPeople", true);
     const response = await axios.get(`${apiUrl}${payload}/`);
-    commit("loadingStatus", false);
+    commit("loadingStatusPeople", false);
     commit("setPerson", response.data);
   },
 };
 const mutations = {
   setPeople: (state, people) => (state.people = people),
   setPerson: (state, person) => (state.person = person),
-  loadingStatus: (state, loadingStatus) =>
-    (state.loadingStatus = loadingStatus),
+  loadingStatusPeople: (state, loadingStatusPeople) =>
+    (state.loadingStatusPeople = loadingStatusPeople),
+  setPeoplePage: (state, peoplePage) => (state.peoplePage = peoplePage),
+  setPeopleNrOfPages: (state, peopleNrOfPages) =>
+    (state.peopleNrOfPages = peopleNrOfPages),
 };
 export default {
   state,

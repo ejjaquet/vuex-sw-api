@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loadingStatus" class="loading-div">
+  <div v-if="loadingStatusPlanets" class="loading-div">
     <vue-spinner line-fg-color="#facc15" />
   </div>
   <div v-else>
@@ -127,7 +127,7 @@ export default {
     ...mapActions(["fetchPlanetDetail"]),
   },
   computed: {
-    ...mapGetters(["planetDetail", "loadingStatus"]),
+    ...mapGetters(["planetDetail", "loadingStatusPlanets"]),
   },
   created() {
     this.fetchPlanetDetail(this.$route.params.id);

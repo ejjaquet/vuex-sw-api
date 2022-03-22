@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loadingStatus" class="loading-div">
+  <div v-if="loadingStatusPeople" class="loading-div">
     <vue-spinner line-fg-color="#facc15" />
   </div>
   <div v-else class="container my-12 mx-auto px-4 md:px-12">
@@ -37,23 +37,36 @@
       </div>
       <!-- END Column -->
     </div>
+    <pagination-bar
+      name="people"
+      :numberOfPages="peopleNrOfPages"
+      :page="peoplePage"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "vue-simple-spinner";
+import PaginationBar from "./layout/PaginationBar";
+
 export default {
   name: "PeopleItems",
   components: {
     vueSpinner: Spinner,
+    PaginationBar,
   },
   methods: {
     ...mapActions(["fetchPeople"]),
   },
-  computed: mapGetters(["peopleList", "loadingStatus"]),
+  computed: mapGetters([
+    "peopleList",
+    "peopleLoadingStatus",
+    "peopleNrOfPages",
+    "peoplePage",
+  ]),
   created() {
-    this.fetchPeople();
+    this.fetchPeople(2);
   },
 };
 </script>

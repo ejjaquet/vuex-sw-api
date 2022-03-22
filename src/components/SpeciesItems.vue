@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loadingStatus" class="loading-div">
+  <div v-if="loadingStatusSpecies" class="loading-div">
     <vue-spinner line-fg-color="#facc15" />
   </div>
   <div v-else class="container my-12 mx-auto px-4 md:px-12">
@@ -56,7 +56,7 @@ export default {
   methods: {
     ...mapActions(["fetchSpecies"]),
   },
-  computed: mapGetters(["speciesList", "loadingStatus"]),
+  computed: mapGetters(["speciesList", "loadingStatusSpecies"]),
   created() {
     this.fetchSpecies();
   },

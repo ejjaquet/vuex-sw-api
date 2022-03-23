@@ -18,7 +18,7 @@
             <h1 class="text-lg">
               <router-link
                 class="no-underline hover:underline text-black"
-                :to="{ name: 'persondetail', params: { id: person.personId } }"
+                :to="{ name: 'persondetail', params: { id: person.id } }"
                 >{{ person.name }}</router-link
               >
             </h1>
@@ -37,11 +37,7 @@
       </div>
       <!-- END Column -->
     </div>
-    <pagination-bar
-      name="people"
-      :numberOfPages="peopleNrOfPages"
-      :page="peoplePage"
-    />
+    <pagination-bar name="people" numberOfPages="4" page="1" />
   </div>
 </template>
 
@@ -59,14 +55,9 @@ export default {
   methods: {
     ...mapActions(["fetchPeople"]),
   },
-  computed: mapGetters([
-    "peopleList",
-    "peopleLoadingStatus",
-    "peopleNrOfPages",
-    "peoplePage",
-  ]),
+  computed: mapGetters(["peopleList", "loadingStatusPeople"]),
   created() {
-    this.fetchPeople(2);
+    this.fetchPeople(1);
   },
 };
 </script>

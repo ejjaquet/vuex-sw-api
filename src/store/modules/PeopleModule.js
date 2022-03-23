@@ -1,5 +1,14 @@
 import axios from "axios";
+
 const getNumberOfPages = (count) => Math.ceil(count / 10);
+
+const addIdsToObjects = (data) =>
+  data.map((obj) => {
+    // Strip id from url property and add it to object
+    const id = Number(obj.url.match(/\d+/)[0]);
+    return { ...obj, id };
+  });
+
 const state = {
   people: [],
   person: {},
@@ -7,6 +16,7 @@ const state = {
   peoplePage: 1,
   peopleNrOfPages: 1,
 };
+
 const getters = {
   peopleList: (state) => state.people,
   personDetail: (state) => state.person,
@@ -14,18 +24,16 @@ const getters = {
   peoplePage: (state) => state.peoplePage,
   peopleNrOfPages: (state) => state.peopleNrOfPages,
 };
+
 const apiUrl = `${process.env.VUE_APP_API_URL}/people/`;
+
 const actions = {
   async fetchPeople({ commit }, page) {
-    console.log("Page: " + page);
     commit("loadingStatusPeople", true);
     const response = await axios.get(`${apiUrl}?page=${page}`);
-    const returnList = response.data.results.map((el) => {
-      el.personId = el.url.split("/")[5];
-      return el;
-    });
+    const returnList = addIdsToObjects(response.data.results);
     commit("loadingStatusPeople", false);
-    commit("setNrOfPages", getNumberOfPages(response.data.count));
+    commit("setPeopleNrOfPages", getNumberOfPages(response.data.count));
     commit("setPeople", returnList);
   },
   async fetchPerson({ commit }, payload) {
@@ -35,6 +43,7 @@ const actions = {
     commit("setPerson", response.data);
   },
 };
+
 const mutations = {
   setPeople: (state, people) => (state.people = people),
   setPerson: (state, person) => (state.person = person),
@@ -44,6 +53,7 @@ const mutations = {
   setPeopleNrOfPages: (state, peopleNrOfPages) =>
     (state.peopleNrOfPages = peopleNrOfPages),
 };
+
 export default {
   state,
   getters,

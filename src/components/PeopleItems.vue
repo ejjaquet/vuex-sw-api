@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import router from "@/router/index";
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "vue-simple-spinner";
 import PaginationBar from "./layout/PaginationBar";
@@ -57,7 +58,11 @@ export default {
   },
   computed: mapGetters(["peopleList", "loadingStatusPeople"]),
   created() {
-    this.fetchPeople(1);
+    let page = 1;
+    if (router.currentRoute.query.page) {
+      page = router.currentRoute.query.page;
+    }
+    this.fetchPeople(page);
   },
 };
 </script>

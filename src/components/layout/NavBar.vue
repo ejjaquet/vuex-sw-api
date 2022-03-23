@@ -3,7 +3,7 @@
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <a href="/" class="flex items-center">
         <img
-          src="../../assets/images/starwars-logo.svg"
+          src="/assets/images/starwars-logo.svg"
           class="mr-3 h-6 sm:h-10"
           alt="StarWars Logo"
         />

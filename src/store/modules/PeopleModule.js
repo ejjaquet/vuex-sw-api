@@ -33,6 +33,7 @@ const actions = {
     const response = await axios.get(`${apiUrl}?page=${page}`);
     const returnList = addIdsToObjects(response.data.results);
     commit("loadingStatusPeople", false);
+    commit("setPeoplePage", page);
     commit("setPeopleNrOfPages", getNumberOfPages(response.data.count));
     commit("setPeople", returnList);
   },

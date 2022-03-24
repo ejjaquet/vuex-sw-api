@@ -37,7 +37,11 @@
       </div>
       <!-- END Column -->
     </div>
-    <pagination-bar name="people" numberOfPages="4" page="1" />
+    <pagination-bar
+      name="people"
+      :numberOfPages="peopleNrOfPages"
+      :page="peoplePage"
+    />
   </div>
 </template>
 
@@ -56,13 +60,27 @@ export default {
   methods: {
     ...mapActions(["fetchPeople"]),
   },
-  computed: mapGetters(["peopleList", "loadingStatusPeople"]),
+  computed: mapGetters([
+    "peopleList",
+    "loadingStatusPeople",
+    "peopleNrOfPages",
+    "peoplePage",
+  ]),
   created() {
-    let page = 1;
+    let page = this.peoplePage;
     if (router.currentRoute.query.page) {
       page = router.currentRoute.query.page;
     }
     this.fetchPeople(page);
+  },
+  watch: {
+    $route() {
+      let page = this.peoplePage;
+      if (router.currentRoute.query.page) {
+        page = router.currentRoute.query.page;
+      }
+      this.fetchPeople(page);
+    },
   },
 };
 </script>

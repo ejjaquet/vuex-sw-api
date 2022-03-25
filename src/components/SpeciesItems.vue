@@ -22,6 +22,9 @@
             <img
               class="w-full"
               :src="'/assets/images/species/' + species.id + '.jpg'"
+              @error="
+                $event.target.src = '/assets/images/placeholder-small.jpg'
+              "
             />
             <header
               class="flex items-center justify-between leading-tight p-2 md:p-4"

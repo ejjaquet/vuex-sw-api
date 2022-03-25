@@ -51,7 +51,7 @@ const mutations = {
     (state.speciesDetail = speciesDetail),
   loadingStatusSpecies: (state, loadingStatusSpecies) =>
     (state.loadingStatusSpecies = loadingStatusSpecies),
-  setSpeciesePage: (state, speciesPage) => (state.peoplePage = speciesPage),
+  setSpeciesPage: (state, speciesPage) => (state.speciesPage = speciesPage),
   setSpeciesNrOfPages: (state, speciesNrOfPages) =>
     (state.speciesNrOfPages = speciesNrOfPages),
 };

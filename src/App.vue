@@ -4,7 +4,7 @@
       <nav-bar />
       <breadcrumbs-bar />
     </header>
-    <main class="mb-auto mt-12 lg:mt-32">
+    <main class="mb-auto mt-12">
       <section class="container mx-auto px-6">
         <router-view />
       </section>

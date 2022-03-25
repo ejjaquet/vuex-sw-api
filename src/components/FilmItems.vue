@@ -11,32 +11,33 @@
         :key="film.id"
       >
         <!-- Article -->
-        <article class="overflow-hidden rounded-lg shadow-lg">
-          <img
-            class="w-full"
-            :src="'/assets/images/films/' + film.id + '.jpg'"
-          />
-          <header
-            class="flex items-center justify-between leading-tight p-2 md:p-4"
-          >
-            <h1 class="text-lg">
-              <router-link
-                class="no-underline hover:underline text-black"
-                :to="{ name: 'filmdetail', params: { id: film.id } }"
-                >{{ film.title }}</router-link
-              >
-            </h1>
-            <p class="text-grey-darker text-sm">
-              {{ $date(film.release_date).format("DD/MM/YYYY") }}
-            </p>
-          </header>
+        <router-link
+          class="no-underline hover:underline text-black"
+          :to="{ name: 'filmdetail', params: { id: film.id } }"
+        >
+          <article class="overflow-hidden rounded-lg shadow-lg">
+            <img
+              class="w-full"
+              :src="'/assets/images/films/' + film.id + '.jpg'"
+            />
+            <header
+              class="flex items-center justify-between leading-tight p-2 md:p-4"
+            >
+              <h1 class="text-lg">
+                {{ film.title }}
+              </h1>
+              <p class="text-grey-darker text-sm">
+                {{ $date(film.release_date).format("DD/MM/YYYY") }}
+              </p>
+            </header>
 
-          <footer
-            class="flex items-center justify-between leading-none p-2 md:p-4"
-          >
-            <p class="ml-2 text-sm">{{ film.director }}</p>
-          </footer>
-        </article>
+            <footer
+              class="flex items-center justify-between leading-none p-2 md:p-4"
+            >
+              <p class="ml-2 text-sm">{{ film.director }}</p>
+            </footer>
+          </article>
+        </router-link>
         <!-- END Article -->
       </div>
       <!-- END Column -->

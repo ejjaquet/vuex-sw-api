@@ -6,33 +6,38 @@
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
       <!-- Column -->
       <div
-        class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
+        class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/5"
         v-for="planet in planetList"
         :key="planet.id"
       >
         <!-- Article -->
-        <article class="overflow-hidden rounded-lg shadow-lg">
-          <header
-            class="flex items-center justify-between leading-tight p-2 md:p-4"
-          >
-            <h1 class="text-lg">
-              <router-link
-                class="no-underline hover:underline text-black"
-                :to="{ name: 'planetdetail', params: { id: planet.id } }"
-                >{{ planet.name }}</router-link
-              >
-            </h1>
-            <p class="text-grey-darker text-sm">
-              {{ $date(planet.created).format("DD/MM/YYYY") }}
-            </p>
-          </header>
+        <router-link
+          class="no-underline hover:underline text-black"
+          :to="{ name: 'planetdetail', params: { id: planet.id } }"
+        >
+          <article class="overflow-hidden rounded-lg shadow-lg">
+            <img
+              class="w-full"
+              :src="'/assets/images/planets/' + planet.id + '.jpg'"
+            />
+            <header
+              class="flex items-center justify-between leading-tight p-2 md:p-4"
+            >
+              <h1 class="text-lg">
+                {{ planet.name }}
+              </h1>
+              <p class="text-grey-darker text-sm">
+                {{ $date(planet.created).format("DD/MM/YYYY") }}
+              </p>
+            </header>
 
-          <footer
-            class="flex items-center justify-between leading-none p-2 md:p-4"
-          >
-            <p class="ml-2 text-sm">Population: {{ planet.population }}</p>
-          </footer>
-        </article>
+            <footer
+              class="flex items-center justify-between leading-none p-2 md:p-4"
+            >
+              <p class="ml-2 text-sm">Population: {{ planet.population }}</p>
+            </footer>
+          </article>
+        </router-link>
         <!-- END Article -->
       </div>
       <!-- END Column -->

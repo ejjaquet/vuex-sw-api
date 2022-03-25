@@ -30,7 +30,7 @@ const apiUrl = `${process.env.VUE_APP_API_URL}/vehicles/`;
 const actions = {
   async fetchVehicles({ commit }, page) {
     commit("loadingStatusVehicles", true);
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(`${apiUrl}?page=${page}`);
     const returnList = addIdsToObjects(response.data.results);
     commit("loadingStatusVehicles", false);
     commit("setVehiclesPage", page);

@@ -20,7 +20,7 @@
                 class="no-underline hover:underline text-black"
                 :to="{
                   name: 'speciesdetail',
-                  params: { id: species.speciesId },
+                  params: { id: species.id },
                 }"
                 >{{ species.name }}</router-link
               >
@@ -42,23 +42,50 @@
       </div>
       <!-- END Column -->
     </div>
+    <pagination-bar
+      name="species"
+      :numberOfPages="speciesNrOfPages"
+      :page="speciesPage"
+    />
   </div>
 </template>
 
 <script>
+import router from "@/router/index";
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "vue-simple-spinner";
+import PaginationBar from "./layout/PaginationBar";
+
 export default {
   name: "SpeciesItems",
   components: {
     vueSpinner: Spinner,
+    PaginationBar,
   },
   methods: {
     ...mapActions(["fetchSpecies"]),
   },
-  computed: mapGetters(["speciesList", "loadingStatusSpecies"]),
+  computed: mapGetters([
+    "speciesList",
+    "loadingStatusSpecies",
+    "speciesNrOfPages",
+    "speciesPage",
+  ]),
   created() {
-    this.fetchSpecies();
+    let page = this.speciesPage;
+    if (router.currentRoute.query.page) {
+      page = router.currentRoute.query.page;
+    }
+    this.fetchSpecies(page);
+  },
+  watch: {
+    $route() {
+      let page = this.speciesPage;
+      if (router.currentRoute.query.page) {
+        page = router.currentRoute.query.page;
+      }
+      this.fetchSpecies(page);
+    },
   },
 };
 </script>

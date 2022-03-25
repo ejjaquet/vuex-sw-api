@@ -20,7 +20,7 @@
                 class="no-underline hover:underline text-black"
                 :to="{
                   name: 'starshipdetail',
-                  params: { id: starship.starshipId },
+                  params: { id: starship.id },
                 }"
                 >{{ starship.name }}</router-link
               >
@@ -40,23 +40,50 @@
       </div>
       <!-- END Column -->
     </div>
+    <pagination-bar
+      name="starships"
+      :numberOfPages="starshipsNrOfPages"
+      :page="starshipsPage"
+    />
   </div>
 </template>
 
 <script>
+import router from "@/router/index";
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "vue-simple-spinner";
+import PaginationBar from "./layout/PaginationBar";
+
 export default {
   name: "StarshipItems",
   components: {
     vueSpinner: Spinner,
+    PaginationBar,
   },
   methods: {
     ...mapActions(["fetchStarships"]),
   },
-  computed: mapGetters(["starshipList", "loadingStatusStarships"]),
+  computed: mapGetters([
+    "starshipList",
+    "loadingStatusStarships",
+    "starshipsNrOfPages",
+    "starshipsPage",
+  ]),
   created() {
-    this.fetchStarships();
+    let page = this.starshipsPage;
+    if (router.currentRoute.query.page) {
+      page = router.currentRoute.query.page;
+    }
+    this.fetchStarships(page);
+  },
+  watch: {
+    $route() {
+      let page = this.starshipsPage;
+      if (router.currentRoute.query.page) {
+        page = router.currentRoute.query.page;
+      }
+      this.fetchStarships(page);
+    },
   },
 };
 </script>

@@ -20,7 +20,7 @@
                 class="no-underline hover:underline text-black"
                 :to="{
                   name: 'vehicledetail',
-                  params: { id: vehicle.vehicleId },
+                  params: { id: vehicle.id },
                 }"
                 >{{ vehicle.name }}</router-link
               >
@@ -40,23 +40,50 @@
       </div>
       <!-- END Column -->
     </div>
+    <pagination-bar
+      name="vehicles"
+      :numberOfPages="vehiclesNrOfPages"
+      :page="vehiclesPage"
+    />
   </div>
 </template>
 
 <script>
+import router from "@/router/index";
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "vue-simple-spinner";
+import PaginationBar from "./layout/PaginationBar";
+
 export default {
   name: "VehicleItems",
   components: {
     vueSpinner: Spinner,
+    PaginationBar,
   },
   methods: {
     ...mapActions(["fetchVehicles"]),
   },
-  computed: mapGetters(["vehicleList", "loadingStatusVehicles"]),
+  computed: mapGetters([
+    "vehicleList",
+    "loadingStatusVehicles",
+    "vehiclesNrOfPages",
+    "vehiclesPage",
+  ]),
   created() {
-    this.fetchVehicles();
+    let page = this.vehiclesPage;
+    if (router.currentRoute.query.page) {
+      page = router.currentRoute.query.page;
+    }
+    this.fetchVehicles(page);
+  },
+  watch: {
+    $route() {
+      let page = this.vehiclesPage;
+      if (router.currentRoute.query.page) {
+        page = router.currentRoute.query.page;
+      }
+      this.fetchVehicles(page);
+    },
   },
 };
 </script>

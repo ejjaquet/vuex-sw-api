@@ -30,7 +30,7 @@ const apiUrl = `${process.env.VUE_APP_API_URL}/species/`;
 const actions = {
   async fetchSpecies({ commit }, page) {
     commit("loadingStatusSpecies", true);
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(`${apiUrl}?page=${page}`);
     const returnList = addIdsToObjects(response.data.results);
     commit("loadingStatusSpecies", false);
     commit("setSpeciesPage", page);

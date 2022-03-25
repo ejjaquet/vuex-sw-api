@@ -18,7 +18,7 @@
             <h1 class="text-lg">
               <router-link
                 class="no-underline hover:underline text-black"
-                :to="{ name: 'planetdetail', params: { id: planet.planetId } }"
+                :to="{ name: 'planetdetail', params: { id: planet.id } }"
                 >{{ planet.name }}</router-link
               >
             </h1>
@@ -37,23 +37,50 @@
       </div>
       <!-- END Column -->
     </div>
+    <pagination-bar
+      name="planets"
+      :numberOfPages="planetsNrOfPages"
+      :page="planetsPage"
+    />
   </div>
 </template>
 
 <script>
+import router from "@/router/index";
 import { mapGetters, mapActions } from "vuex";
 import Spinner from "vue-simple-spinner";
+import PaginationBar from "./layout/PaginationBar";
+
 export default {
   name: "PlanetItems",
   components: {
     vueSpinner: Spinner,
+    PaginationBar,
   },
   methods: {
     ...mapActions(["fetchPlanets"]),
   },
-  computed: mapGetters(["planetList", "loadingStatusPlanets"]),
+  computed: mapGetters([
+    "planetList",
+    "loadingStatusPlanets",
+    "planetsNrOfPages",
+    "planetsPage",
+  ]),
   created() {
-    this.fetchPlanets();
+    let page = this.planetsPage;
+    if (router.currentRoute.query.page) {
+      page = router.currentRoute.query.page;
+    }
+    this.fetchPlanets(page);
+  },
+  watch: {
+    $route() {
+      let page = this.planetsPage;
+      if (router.currentRoute.query.page) {
+        page = router.currentRoute.query.page;
+      }
+      this.fetchPlanets(page);
+    },
   },
 };
 </script>

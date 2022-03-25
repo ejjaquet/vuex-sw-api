@@ -8,13 +8,13 @@
       <div
         class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
         v-for="film in filmList"
-        :key="film.filmid"
+        :key="film.id"
       >
         <!-- Article -->
         <article class="overflow-hidden rounded-lg shadow-lg">
           <img
             class="w-full"
-            :src="'/assets/images/films/' + film.filmId + '.jpg'"
+            :src="'/assets/images/films/' + film.id + '.jpg'"
           />
           <header
             class="flex items-center justify-between leading-tight p-2 md:p-4"
@@ -22,7 +22,7 @@
             <h1 class="text-lg">
               <router-link
                 class="no-underline hover:underline text-black"
-                :to="{ name: 'filmdetail', params: { id: film.filmId } }"
+                :to="{ name: 'filmdetail', params: { id: film.id } }"
                 >{{ film.title }}</router-link
               >
             </h1>
